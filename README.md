@@ -1,4 +1,4 @@
-go-oauth
+OAuth 1.0 HMAC-SHA1 signing
 ========
 
-OAuth HMAC-SHA1 signing in Go
+

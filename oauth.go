@@ -6,8 +6,8 @@
 package oauth
 
 import (
-  "fmt"
-  "github.com/gillesdemey/go-oauth/lib"
+	"fmt"
+	"github.com/gillesdemey/go-oauth/lib"
 )
 
 /**
@@ -15,25 +15,25 @@ import (
  */
 func Sign(signMethod string, httpMethod string, baseUri string, params map[string]string, consumerSecret string, tokenSecret string) string {
 
-  signature := ""
+	signature := ""
 
-  switch signMethod {
+	switch signMethod {
 
-    default:
-      fmt.Println("signing method unsupported.")
+	default:
+		fmt.Println("signing method unsupported.")
 
-    case "HMAC-SHA1":
-      base := lib.GenerateBase(signMethod, httpMethod, baseUri, params)
-      signature = signHMAC(base, consumerSecret, tokenSecret)
-      break
+	case "HMAC-SHA1":
+		base := lib.GenerateBase(signMethod, httpMethod, baseUri, params)
+		signature = signHMAC(base, consumerSecret, tokenSecret)
+		break
 
-  }
+	}
 
-  return signature;
+	return signature
 
 }
 
 func signHMAC(base string, consumerSecret string, tokenSecret string) string {
-  key := lib.RFC3986(consumerSecret) + "&" + lib.RFC3986(tokenSecret)
-  return lib.SHA1(base, key);
+	key := lib.RFC3986(consumerSecret) + "&" + lib.RFC3986(tokenSecret)
+	return lib.SHA1(base, key)
 }
